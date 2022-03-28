@@ -1,6 +1,6 @@
 const express = require('express');
 const { commentOnPost,createPost,likeOnPost,createUser,likePostList,unlikeOnPost,
-    commentPostList,likeOnComment , likeCommentList} = require('../controllers/Controller');
+    commentPostList,likeOnComment , likeCommentList,getAllPosts} = require('../controllers/Controller');
 const router = express.Router();
 
 router.get('/heathCheck',async (req,res)=>{
@@ -9,6 +9,8 @@ router.get('/heathCheck',async (req,res)=>{
         message: "working fine"
     })
 })
+
+router.get('/posts',getAllPosts);
 
 router.post('/user',createUser);
 
@@ -28,7 +30,6 @@ router.get('/comments/:commentId/commentLikeList',likeCommentList);
 
 router.get('/posts/:postId/commentPostList',commentPostList);
 
-router.get('/comment/:commentId/commentLikeList',)
 
 
 module.exports = router;

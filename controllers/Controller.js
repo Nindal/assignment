@@ -40,7 +40,23 @@ const createPost = async (req, res) => {
   }
 };
 
-
+const getAllPosts = async (req,res)=>{
+  try{
+    const posts = await Post.find();
+    res.status(201).json({
+      status: 'success',
+      data: {
+        post: posts
+      }
+    });
+  }
+  catch(err){
+    res.status(400).json({
+      status: 'fail',
+      message: err.message
+    });
+  }
+}
 const likeOnPost = async (req,res) => {
   try{
     const postId = req.body.postId;
@@ -237,4 +253,4 @@ const commentPostList = async (req,res) => {
 }
 
 module.exports = { createUser,createPost,likeOnPost,unlikeOnPost,commentOnPost,likeOnComment,commentPostList,
-  commentPostList,likePostList,likeCommentList }
+  commentPostList,likePostList,likeCommentList,getAllPosts }
